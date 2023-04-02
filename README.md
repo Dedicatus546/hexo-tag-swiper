@@ -10,8 +10,6 @@ npm install --save hexo-tag-swiper
 
 ## Usage
 
-The full tag format is as follows:
-
 ```bash
 {% swiper %}
   {% swiperItem %}
@@ -26,20 +24,16 @@ The full tag format is as follows:
 {% endswiper %}
 ```
 
-example:
+or
 
 ```bash
 {% swiper %}
-  {% swiperItem %}
-    swiper 1
-    ![img1](https://fastly.jsdelivr.net/gh/Dedicatus546/image@main/202304022159088.avif)
-  {% endswiperItem %}
-  {% swiperItem %}
-    swiper 2
-    ![img2](https://fastly.jsdelivr.net/gh/Dedicatus546/image@main/202304022159851.avif)
-  {% endswiperItem %}
+  {% swiperImageItem [url] [ratio = 1.77778] %}
+  {% swiperImageItem [url] [ratio = 1.77778] %}
 {% endswiper %}
 ```
+
+see the [demo page]()
 
 ## Configuration
 
@@ -56,13 +50,17 @@ swiper:
 
 ## Style
 
-there are some style change for swiper.
+there are some custom style for swiper.
 
 Built-in global css
 
 ```css
 :root {
   --swiper-navigation-size: 1.25em;
+}
+
+.swiper {
+  margin-bottom: 20px;
 }
 
 .swiper-slide {
@@ -99,14 +97,20 @@ Built-in global css
 Built-in next theme css
 
 ```css
-<style>
-  :root {
+:root {
   --swiper-theme-color: var(--theme-color);
-  }
-</style>
+}
+
+.swiper .swiper-slide .swiper-slide-img {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+  background: var(--body-bg-color);
+  margin: 0;
+}
 ```
 
-if your theme is not next, you can write extra style to adapt it in `scripts`, such as:
+if your theme is not `next`, you can write extra style to adapt it in `scripts`, such as:
 
 ```js
 // scripts/swiper.theme.js
@@ -128,4 +132,4 @@ swiper:
   theme: "your theme"
 ```
 
-there are many css variable in swiper, for examples: `--swiper-theme-color`, `--swiper-navigation-size` ... 
+there are many css variable in swiper, for examples: `--swiper-theme-color`, `--swiper-navigation-size` ...
