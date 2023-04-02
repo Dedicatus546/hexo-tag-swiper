@@ -56,6 +56,10 @@
               --swiper-navigation-size: 1.25em 
             }
 
+            .swiper {
+              margin-bottom: 20px;
+            }
+
             .swiper-slide {
               box-sizing: border-box;
               padding: 0 calc(var(--swiper-navigation-size)/ 44 * 27 + 2 * var(--swiper-navigation-sides-offset, 10px) + 6px);
@@ -73,7 +77,7 @@
             .swiper-button-wrapper.swiper-button-wrapper-prev {
               left: 0;
             }
-            
+
             .swiper-button-wrapper.swiper-button-wrapper-next {
               right: 0;
             }

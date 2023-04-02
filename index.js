@@ -72,6 +72,18 @@ hexo.extend.tag.register(
   }
 );
 
+hexo.extend.tag.register("swiperImageItem", (args, content) => {
+  const [src, ratio = "1.77778"] = args;
+  return `
+      <div class="swiper-slide">
+        <img 
+          class="swiper-slide-img" 
+          src=${src} 
+          style="aspect-ratio: ${ratio}" />
+      </div>
+    `;
+});
+
 hexo.extend.injector.register("head_end", () => {
   const data = fs.readFileSync(path.resolve(__dirname, "swiper-loader.js"), {
     encoding: "utf-8",
@@ -87,6 +99,13 @@ hexo.extend.injector.register("body_end", () => {
     return `<style>
       :root {
         --swiper-theme-color: var(--theme-color);
+      }
+      .swiper .swiper-slide .swiper-slide-img {
+        display: block;
+        width: 100%;
+        object-fit: contain;
+        background: var(--body-bg-color);
+        margin: 0;
       }
     </style>`;
   }
