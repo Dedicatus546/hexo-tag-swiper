@@ -31,13 +31,12 @@ example:
 ```bash
 {% swiper %}
   {% swiperItem %}
-    content1
+    swiper 1
+    ![img1](https://fastly.jsdelivr.net/gh/Dedicatus546/image@main/202304022159088.avif)
   {% endswiperItem %}
   {% swiperItem %}
-    content2
-  {% endswiperItem %}
-  {% swiperItem %}
-    content2
+    swiper 2
+    ![img2](https://fastly.jsdelivr.net/gh/Dedicatus546/image@main/202304022159851.avif)
   {% endswiperItem %}
 {% endswiper %}
 ```
@@ -130,7 +129,3 @@ swiper:
 ```
 
 there are many css variable in swiper, for examples: `--swiper-theme-color`, `--swiper-navigation-size` ... 
-
-## License
-
-Copyright (c) 2015, Z4Tech. Licensed under the [MIT license](LICENSE).
