@@ -44,7 +44,7 @@ Example configuration:
 ```yml
 swiper:
   jsUrl: "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"  // default is "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
-  cssUrl: ""https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css""  // default is "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+  cssUrl: "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"  // default is "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
   theme: "next"  // default is ""
 ```
 
@@ -94,7 +94,7 @@ Built-in global css
 }
 ```
 
-Built-in next theme css
+Built-in `next` theme css
 
 ```css
 :root {
@@ -110,7 +110,7 @@ Built-in next theme css
 }
 ```
 
-if your theme is not `next`, you can write extra style to adapt it in `scripts`, such as:
+if your theme is not `next`, you can write extra style to adapt it in `scripts` folder, such as:
 
 ```js
 // scripts/swiper.theme.js
@@ -132,4 +132,4 @@ swiper:
   theme: "your theme"
 ```
 
-there are many css variable in swiper, for examples: `--swiper-theme-color`, `--swiper-navigation-size` ...
+there are many css variable in swiper, for examples: `--swiper-theme-color`, `--swiper-navigation-size` ... you can find them in the source code of swiper.
