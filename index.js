@@ -94,7 +94,7 @@ hexo.extend.injector.register("head_end", () => {
 });
 
 hexo.extend.injector.register("body_end", () => {
-  const { theme = "next" } = hexo.config.swiper || {};
+  const { theme = "next" } = hexo.config || {};
   if (theme === "next") {
     return `<style>
       :root {
