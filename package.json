@@ -1,6 +1,6 @@
 {
   "name": "hexo-tag-swiper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a hexo plugin with swiperjs",
   "main": "index.js",
   "scripts": {
