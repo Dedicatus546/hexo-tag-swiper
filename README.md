@@ -33,11 +33,11 @@ or
 {% endswiper %}
 ```
 
-see the [demo page]()
+see the [demo page](https://prohibitorum.top//9d00c7a7d7ab.html)
 
 ## Configuration
 
-You can configure the `jsUrl`, `cssUrl` and `theme` in your main `_config.yml`:
+You can configure the `jsUrl`, `cssUrl` in your main `_config.yml`:
 
 Example configuration:
 
@@ -45,7 +45,6 @@ Example configuration:
 swiper:
   jsUrl: "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"  // default is "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"
   cssUrl: "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"  // default is "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-  theme: "next"  // default is ""
 ```
 
 ## Style
@@ -115,7 +114,7 @@ if your theme is not `next`, you can write extra style to adapt it in `scripts` 
 ```js
 // scripts/swiper.theme.js
 hexo.extend.injector.register("body_end", () => {
-  const { theme = "your theme" } = hexo.config.swiper || {};
+  const { theme = "your theme" } = hexo.config || {};
   if (theme === "your theme") {
     return `<style>
       // some extra style
@@ -123,13 +122,6 @@ hexo.extend.injector.register("body_end", () => {
   }
   return "";
 });
-```
-
-and then change `_config.yml`
-
-```yml
-swiper:
-  theme: "your theme"
 ```
 
 there are many css variable in swiper, for examples: `--swiper-theme-color`, `--swiper-navigation-size` ... you can find them in the source code of swiper.
