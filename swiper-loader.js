@@ -57,6 +57,7 @@
             }
 
             .swiper {
+              position: relative;
               margin-bottom: 20px;
             }
 
