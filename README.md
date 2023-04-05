@@ -33,7 +33,7 @@ or
 {% endswiper %}
 ```
 
-see the [demo page](https://prohibitorum.top//9d00c7a7d7ab.html)
+see the [demo page](https://prohibitorum.top/4f1e26b032dc.html)
 
 ## Configuration
 
