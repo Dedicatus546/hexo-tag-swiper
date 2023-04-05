@@ -42,7 +42,7 @@ hexo.extend.tag.register(
               swiperInst.update();
             });
             document.querySelectorAll("#${elId} .swiper-slide").forEach(el => {
-              resizeObserver.observe(el)
+              resizeObserver.observe(el);
             });
           });
         });
