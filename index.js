@@ -27,7 +27,7 @@ hexo.extend.tag.register(
       </div>
       <script>
         window.addEventListener("load", () => {
-          window.$SwiperLoader.load(${jsUrl}, ${cssUrl}).then(() => {
+          window.$SwiperLoader.load("${jsUrl}", "${cssUrl}").then(() => {
             const swiperInst = new Swiper("#${elId}", {
               autoHeight: true,
               observer: true,
