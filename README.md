@@ -26,7 +26,7 @@ Use with any markdown content.
 {% endswiper %}
 ```
 
-use with image.
+Use with image.
 
 ```bash
 {% swiper %}
