@@ -26,6 +26,11 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/lodash": "^4.17.7",
     "@types/node": "^22.1.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "nunjucks": "^3.2.4"
   }
 }
