@@ -1,55 +1,52 @@
-const fs = require("node:fs");
-const uuid = require("uuid");
+const { merge } = require("lodash");
+const { readFileSync } = require("node:fs");
 const path = require("node:path");
+const nunjucks = require("nunjucks");
+
+const css = hexo.extend.helper.get("css").bind(hexo);
+const js = hexo.extend.helper.get("js").bind(hexo);
+
+/**
+ * @type {{js?: string; css?: string}}
+ */
+const swiperUserConfig = hexo.config.swiper;
+const swiperGlobalConfig = merge(
+  {
+    js: "https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.js",
+    css: "https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.css",
+  },
+  swiperUserConfig
+);
+/**
+ * create random str that we can use it to distinguish swiper instance.
+ * @returns {string}
+ */
+const createRandomId = () => {
+  return Math.random().toString(36).slice(-8);
+};
 
 hexo.extend.tag.register(
   "swiper",
   (args, content) => {
-    const { jsUrl, cssUrl } = hexo.config.swiper || {};
-
-    const sId = uuid.v4();
-    const elId = `swiperInst-${sId}`;
+    const random = createRandomId();
+    const id = `swiperInst-${random}`;
     const data = hexo.render.renderSync({
       text: content,
     });
 
-    return `
-      <div class="swiper" id="${elId}" style="width: 100%">
-        <div class="swiper-wrapper">
-          ${data}
-        </div>
-        <div class="swiper-button-wrapper swiper-button-wrapper-prev">
-          <div class="swiper-button-prev"></div>
-        </div>
-        <div class="swiper-button-wrapper swiper-button-wrapper-next">
-          <div class="swiper-button-next"></div>
-        </div>
-      </div>
-      <script>
-        window.addEventListener("load", () => {
-          window.$SwiperLoader.load("${jsUrl}", "${cssUrl}").then(() => {
-            const swiperInst = new Swiper("#${elId}", {
-              autoHeight: true,
-              observer: true,
-              navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }
-            });
-            // fix swiper can't resize hight when change slide height in some condition
-            // such as using detail tag
-            const resizeObserver = new ResizeObserver((entries) => {
-              swiperInst.update();
-            });
-            document.querySelectorAll("#${elId} .swiper-slide").forEach(el => {
-              resizeObserver.observe(el);
-            });
-          });
-        });
-      </script>
-    `;
+    const str = nunjucks.renderString(
+      readFileSync(path.resolve(__dirname, "src", "swiper.njk"), "utf8"),
+      {
+        swiperId: id,
+        direction: "horizontal",
+        swiperItemData: data,
+      }
+    );
+
+    return str;
   },
   {
+    // 带结束标签
     ends: true,
   }
 );
@@ -75,39 +72,44 @@ hexo.extend.tag.register(
 hexo.extend.tag.register("swiperImageItem", (args, content) => {
   const [src, ratio = "1.77778"] = args;
   return `
-      <div class="swiper-slide">
-        <img 
-          class="swiper-slide-img" 
-          src=${src} 
-          style="aspect-ratio: ${ratio}" />
-      </div>
-    `;
+    <div class="swiper-slide">
+      <img
+        class="swiper-slide-img"
+        src=${src} 
+        style="aspect-ratio: ${ratio}" 
+      />
+    </div>
+  `;
 });
 
-hexo.extend.injector.register("head_end", () => {
-  const data = fs.readFileSync(path.resolve(__dirname, "swiper-loader.js"), {
-    encoding: "utf-8",
-  });
-  return `<script>
-    ${data}
-  </script>`;
+// insert swiper js
+hexo.extend.injector.register("body_end", () => {
+  const { js: jsUrl } = swiperGlobalConfig;
+  return js(jsUrl);
+});
+
+// insert swiper css
+hexo.extend.injector.register("body_end", () => {
+  const { css: cssUrl } = swiperGlobalConfig;
+  return css(cssUrl);
 });
 
 hexo.extend.injector.register("body_end", () => {
-  const { theme = "next" } = hexo.config || {};
-  if (theme === "next") {
-    return `<style>
-      :root {
-        --swiper-theme-color: var(--theme-color);
-      }
-      .swiper .swiper-slide .swiper-slide-img {
-        display: block;
-        width: 100%;
-        object-fit: contain;
-        background: var(--body-bg-color);
-        margin: 0;
-      }
-    </style>`;
-  }
-  return "";
+  return `<style>
+    :root {
+      --swiper-theme-color: var(--theme-color);
+      --swiper-pagination-bottom: 0;
+    }
+    .swiper {
+      padding-bottom: 32px;
+      margin-bottom: 20px;
+    }
+    .swiper .swiper-slide .swiper-slide-img {
+      display: block;
+      width: 100%;
+      object-fit: contain;
+      background: var(--body-bg-color);
+      margin: 0;
+    }
+  </style>`;
 });

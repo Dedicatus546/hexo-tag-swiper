@@ -1,0 +1,28 @@
+<div class="swiper" id="{{ swiperId }}" style="width: 100%">
+  <div class="swiper-wrapper">
+    {{ swiperItemData | safe }}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+<script>
+  window.addEventListener("load", () => {
+    const swiper = new Swiper("#{{ swiperId }}", {
+      autoHeight: true,
+      direction: "{{ direction }}",
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      }
+    });
+    // fix swiper can't resize height when change slide height in some sences.
+    // such as using detail tag and expend it.
+    const resizeObserver = new ResizeObserver((entries) => {
+      swiper.update();
+    });
+    document
+      .querySelectorAll("#{{ swiperId }} .swiper-slide")
+      .forEach(el => {
+        resizeObserver.observe(el);
+      });
+  })
+</script>
