@@ -1,7 +1,7 @@
 {
   "name": "hexo-tag-swiper",
-  "version": "0.0.3",
-  "description": "a hexo plugin with swiperjs",
+  "version": "1.0.0",
+  "description": "a hexo plugin that you can use swiperjs",
   "main": "index.js",
   "scripts": {
     "publish": "pnpm publish --registry=https://registry.npmjs.org"
@@ -10,9 +10,8 @@
     "hexo",
     "swiperjs"
   ],
-  "dependencies": {
-    "hexo": "^6.3.0",
-    "uuid": "^9.0.0"
+  "peerDependencies": {
+    "hexo": "^7"
   },
   "repository": {
     "url": "https://github.com/Dedicatus546/hexo-tag-swiper"
@@ -22,7 +21,11 @@
   },
   "author": {
     "name": "Par9uet",
-    "email": "1607611087@qq.com"
+    "email": "1607611087@qq.com",
+    "url": "https://github.com/Dedicatus546"
   },
-  "license": "ISC"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.1.0"
+  }
 }
