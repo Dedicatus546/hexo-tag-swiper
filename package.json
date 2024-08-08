@@ -1,7 +1,7 @@
 {
   "name": "hexo-tag-swiper",
   "version": "2.0.0",
-  "description": "a hexo plugin that you can use swiperjs",
+  "description": "a plugin that you can using swiperjs in Hexo post.",
   "main": "index.js",
   "scripts": {
     "publish": "pnpm publish --registry=https://registry.npmjs.org"
