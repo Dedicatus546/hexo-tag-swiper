@@ -46,7 +46,6 @@ hexo.extend.tag.register(
     return str;
   },
   {
-    // 带结束标签
     ends: true,
   }
 );
@@ -58,11 +57,7 @@ hexo.extend.tag.register(
       text: content,
       engine: "markdown",
     });
-    return `
-      <div class="swiper-slide">
-        ${data}
-      </div>
-    `;
+    return `<div class="swiper-slide">${data}</div>`;
   },
   {
     ends: true,
@@ -71,15 +66,13 @@ hexo.extend.tag.register(
 
 hexo.extend.tag.register("swiperImageItem", (args, content) => {
   const [src, ratio = "1.77778"] = args;
-  return `
-    <div class="swiper-slide">
+  return `<div class="swiper-slide">
       <img
         class="swiper-slide-img"
         src=${src} 
         style="aspect-ratio: ${ratio}" 
       />
-    </div>
-  `;
+    </div>`;
 });
 
 // insert swiper js
@@ -95,21 +88,25 @@ hexo.extend.injector.register("body_end", () => {
 });
 
 hexo.extend.injector.register("body_end", () => {
-  return `<style>
-    :root {
-      --swiper-theme-color: var(--theme-color);
-      --swiper-pagination-bottom: 0;
-    }
-    .swiper {
-      padding-bottom: 32px;
-      margin-bottom: 20px;
-    }
-    .swiper .swiper-slide .swiper-slide-img {
-      display: block;
-      width: 100%;
-      object-fit: contain;
-      background: var(--body-bg-color);
-      margin: 0;
-    }
-  </style>`;
+  const { theme } = hexo.config;
+  if (theme === "next") {
+    return `<style>
+      :root {
+        --swiper-theme-color: var(--theme-color);
+        --swiper-pagination-bottom: 0;
+      }
+      .swiper {
+        padding-bottom: 32px;
+        margin-bottom: 20px;
+      }
+      .swiper .swiper-slide .swiper-slide-img {
+        display: block;
+        width: 100%;
+        object-fit: contain;
+        background: var(--body-bg-color);
+        margin: 0;
+      }
+    </style>`;
+  }
+  return "";
 });
