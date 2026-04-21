@@ -12,8 +12,8 @@ const js = hexo.extend.helper.get("js").bind(hexo);
 const swiperUserConfig = hexo.config.swiper;
 const swiperGlobalConfig = merge(
   {
-    js: "https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.js",
-    css: "https://cdn.jsdelivr.net/npm/swiper@11.1.9/swiper-bundle.min.css",
+    js: "https://cdn.jsdelivr.net/npm/swiper@12.1.3/swiper-bundle.min.js",
+    css: "https://cdn.jsdelivr.net/npm/swiper@12.1.3/swiper-bundle.min.css",
   },
   swiperUserConfig
 );
