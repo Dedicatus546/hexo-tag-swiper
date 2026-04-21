@@ -11,7 +11,7 @@
     "swiperjs"
   ],
   "peerDependencies": {
-    "hexo": "^7"
+    "hexo": "^7.0.0 || ^8.0.0"
   },
   "repository": {
     "url": "https://github.com/Dedicatus546/hexo-tag-swiper"
