@@ -1,6 +1,6 @@
 {
   "name": "hexo-tag-swiper",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "a plugin that you can using swiperjs in Hexo post.",
   "main": "index.js",
   "scripts": {
